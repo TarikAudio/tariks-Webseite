@@ -619,17 +619,17 @@ const Karriere = () => {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '10px',
-            padding: '12px 22px',
-            background: 'transparent',
-            border: '1px solid var(--line)',
+            padding: '13px 24px',
+            background: 'var(--ink)',
+            border: '1px solid var(--ink)',
             borderRadius: '999px',
             textDecoration: 'none',
-            color: 'var(--ink)',
+            color: 'var(--bg)',
             fontSize: '14px',
-            transition: 'border-color .2s, background .2s',
+            transition: 'opacity .2s',
           }}>
             <span style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: 'italic', fontSize: '16px' }}>Vollständiges Profil</span>
-            <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '12px', color: 'var(--accent)' }}>— Lebenslauf & Methoden ↗</span>
+            <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '12px', color: 'var(--accent-light, #7fc97f)' }}>— Lebenslauf & Methoden ↗</span>
           </a>
         </div>
       </Container>
