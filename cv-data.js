@@ -6,7 +6,7 @@ window.CV_DATA = {
   tagline: "Gründungsberater · Designer · Medien & Informationswesen",
   location: "Freiburg, Germany",
   address: "Roseggerstraße 9",
-  email: "tariktasci@me.com",
+  email: "hello@tariktasci.de",
   phone: "+49 177 57 26 405",
   linkedin: "linkedin.com/in/tariktasci",
 

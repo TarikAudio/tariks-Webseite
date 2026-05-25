@@ -1008,7 +1008,6 @@ const Kontakt = () => {
             }}>
               <div style={{ color: 'var(--bg)', marginBottom: '14px' }}>↘ Auch hier</div>
               <a href="https://www.linkedin.com/in/tarik-tasci-96a7a6275/" target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}>LinkedIn — linkedin.com/in/tarik-tasci</a>
-              <div>Adresse — {d.address}</div>
               <div>{d.location}</div>
               <div style={{ marginTop: '14px', color: 'color-mix(in srgb, var(--bg) 50%, transparent)' }}>
                 — Aktuell verfügbar für Q3/26
