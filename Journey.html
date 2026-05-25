@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building in Public — Tarik Tasci</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #efeae0;
+      --paper: #f7f3ea;
+      --ink: #1a1812;
+      --dim: #6b6256;
+      --line: rgba(26, 24, 18, 0.12);
+      --accent: #b04a2e;
+    }
+
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    ::selection { background: var(--accent); color: var(--bg); }
+    a { color: inherit; }
+
+    @keyframes tt-rise {
+      from { transform: translateY(110%); }
+      to   { transform: translateY(0); }
+    }
+    .tt-mask { display: inline-block; overflow: hidden; vertical-align: top; line-height: inherit; }
+    .tt-rise { display: inline-block; transform: translateY(110%); animation: tt-rise 1s cubic-bezier(.2,.8,.2,1) forwards; }
+
+    @keyframes tt-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, #7fc97f 65%, transparent); }
+      70%      { box-shadow: 0 0 0 10px color-mix(in srgb, #7fc97f 0%, transparent); }
+    }
+    .tt-pulse-dot { animation: tt-pulse 2.2s ease-out infinite; }
+
+    [data-reveal] {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .9s cubic-bezier(.2,.7,.3,1), transform .9s cubic-bezier(.2,.7,.3,1);
+    }
+    [data-reveal][data-revealed="true"] { opacity: 1; transform: translateY(0); }
+
+    .tt-progress {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: var(--accent); z-index: 60; width: 0;
+      transition: width .12s linear;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in srgb, var(--bg) 86%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: 1240px; margin: 0 auto;
+      padding: 14px 32px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 24px;
+    }
+
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+    /* Status card */
+    .status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .update-list { display: flex; flex-direction: column; gap: 0; }
+
+    @media (max-width: 860px) {
+      .nav-links { display: none !important; }
+      .nav-inner { padding: 12px 20px !important; }
+      .container { padding: 0 20px !important; }
+      .status-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="tt-progress" class="tt-progress"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="Website.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);">
+      <div style="width:30px;height:30px;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:-0.02em;border-radius:6px;">tt</div>
+      <div style="font-family:'Newsreader',Georgia,serif;font-size:17px;font-style:italic;">Tarik Tasci</div>
+    </a>
+    <div class="nav-links" style="display:flex;align-items:center;gap:4px;">
+      <a href="Website.html" style="padding:8px 14px;font-size:13px;color:var(--dim);text-decoration:none;border-radius:999px;border:1px solid transparent;">← Zurück</a>
+      <a href="#status" style="padding:8px 14px;font-size:13px;color:var(--dim);text-decoration:none;border-radius:999px;border:1px solid transparent;">Status</a>
+      <a href="#updates" style="padding:8px 14px;font-size:13px;color:var(--dim);text-decoration:none;border-radius:999px;border:1px solid transparent;">Updates</a>
+      <a href="#naechstes" style="padding:8px 14px;font-size:13px;color:var(--dim);text-decoration:none;border-radius:999px;border:1px solid transparent;">Was kommt</a>
+    </div>
+    <a href="Website.html#kontakt" style="padding:9px 16px;font-size:13px;color:var(--bg);background:var(--ink);text-decoration:none;border-radius:999px;display:flex;align-items:center;gap:8px;">
+      Schreib mir <span style="font-family:'JetBrains Mono',monospace;font-size:12px;">↗</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="padding:88px 32px 64px;">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:36px;flex-wrap:wrap;">
+      <span style="width:8px;height:8px;border-radius:50%;background:#7fc97f;" class="tt-pulse-dot"></span>
+      Building in Public · Frühjahr 26
+      <span style="flex:1;height:1px;background:var(--line);max-width:120px;"></span>
+      Tarik Tasci
+    </div>
+
+    <h1 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(56px,11vw,180px);line-height:0.88;letter-spacing:-0.035em;font-weight:400;margin:0;color:var(--ink);">
+      <span class="tt-mask"><span class="tt-rise" style="font-style:italic;animation-delay:0ms;">Ich bau</span></span><br>
+      <span class="tt-mask"><span class="tt-rise" style="animation-delay:120ms;">gerade<span style="color:var(--accent);">.</span></span></span>
+    </h1>
+
+    <div style="margin-top:36px;max-width:680px;">
+      <p style="font-family:'Newsreader',Georgia,serif;font-size:clamp(20px,2.2vw,28px);line-height:1.3;color:var(--ink);margin:0;font-weight:300;">
+        Ich weiß noch nicht genau wo die Reise hingeht. Aber ich zeige den Weg — mit allem was dazugehört: den Fortschritten, den Rückschlägen und den offenen Fragen.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- STATUS -->
+<section id="status" style="padding:64px 0 32px;">
+  <div class="container">
+    <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:32px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;padding-top:6px;min-width:60px;">§ 01</div>
+      <div style="flex:1;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;">Gerade</div>
+        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(32px,4.2vw,56px);font-weight:400;margin:0;letter-spacing:-0.02em;color:var(--ink);line-height:1.05;"><em>Projekt</em>-Status</h2>
+      </div>
+      <div style="flex:1;height:1px;background:var(--line);margin-top:24px;"></div>
+    </div>
+
+    <div data-reveal class="status-grid">
+
+      <!-- Voice Agent -->
+      <div style="background:var(--ink);color:var(--bg);border-radius:20px;padding:28px 30px;">
+        <div style="display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:color-mix(in srgb,var(--bg) 60%,transparent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#e8a23a;"></span>
+          Im Aufbau · 2026
+        </div>
+        <div style="font-family:'Newsreader',Georgia,serif;font-size:28px;font-style:italic;font-weight:400;line-height:1.1;margin-bottom:8px;">Voice Agent</div>
+        <div style="font-size:13px;color:color-mix(in srgb,var(--bg) 60%,transparent);margin-bottom:16px;">Gastronomie · ElevenLabs · n8n</div>
+        <div style="font-size:14px;line-height:1.6;color:color-mix(in srgb,var(--bg) 80%,transparent);">
+          Prototype läuft intern. Bestellungen werden strukturiert und via n8n an Slack weitergeleitet. Nächster Schritt: erster Restauranttest.
+        </div>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid color-mix(in srgb,var(--bg) 15%,transparent);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:color-mix(in srgb,var(--bg) 50%,transparent);margin-bottom:6px;">FORTSCHRITT</div>
+          <div style="height:4px;background:color-mix(in srgb,var(--bg) 15%,transparent);border-radius:99px;overflow:hidden;">
+            <div style="height:100%;width:35%;background:#e8a23a;border-radius:99px;"></div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:color-mix(in srgb,var(--bg) 40%,transparent);margin-top:4px;">35% — Prototype läuft</div>
+        </div>
+      </div>
+
+      <!-- CodeCuisine -->
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:28px 30px;">
+        <div style="display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#7fc97f;" class="tt-pulse-dot"></span>
+          Aktiv · seit Juni 2025
+        </div>
+        <div style="font-family:'Newsreader',Georgia,serif;font-size:28px;font-style:italic;font-weight:400;line-height:1.1;margin-bottom:8px;">CodeCuisine</div>
+        <div style="font-size:13px;color:var(--accent);margin-bottom:16px;">Web-Agentur · KMU · Freiburg</div>
+        <div style="font-size:14px;line-height:1.6;color:var(--dim);">
+          Mit Louis Heffner. Websites für kleine Unternehmen. 3 Kunden, erste Projekte abgeschlossen. Ab Juli Vollzeit dabei.
+        </div>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--dim);margin-bottom:6px;">FORTSCHRITT</div>
+          <div style="height:4px;background:var(--line);border-radius:99px;overflow:hidden;">
+            <div style="height:100%;width:20%;background:var(--accent);border-radius:99px;"></div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);margin-top:4px;">20% — Studio im Aufbau</div>
+        </div>
+      </div>
+
+      <!-- GZ -->
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:28px 30px;">
+        <div style="display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--dim);"></span>
+          Geplant · ab Juli 2026
+        </div>
+        <div style="font-family:'Newsreader',Georgia,serif;font-size:28px;font-style:italic;font-weight:400;line-height:1.1;margin-bottom:8px;">Gründer&shy;zuschuss</div>
+        <div style="font-size:13px;color:var(--accent);margin-bottom:16px;">Arbeitsagentur · 6 Monate</div>
+        <div style="font-size:14px;line-height:1.6;color:var(--dim);">
+          Stelle endet 30. Juni. GZ-Antrag in Vorbereitung — gibt 6 Monate Zeit um CodeCuisine und den Voice Agent profitabel zu machen.
+        </div>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--dim);margin-bottom:6px;">FORTSCHRITT</div>
+          <div style="height:4px;background:var(--line);border-radius:99px;overflow:hidden;">
+            <div style="height:100%;width:10%;background:var(--dim);border-radius:99px;"></div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);margin-top:4px;">10% — Antrag in Planung</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- UPDATES -->
+<section id="updates" style="padding:64px 0 32px;">
+  <div class="container">
+    <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:32px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;padding-top:6px;min-width:60px;">§ 02</div>
+      <div style="flex:1;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;">Offen & ehrlich</div>
+        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(32px,4.2vw,56px);font-weight:400;margin:0;letter-spacing:-0.02em;color:var(--ink);line-height:1.05;"><em>Updates</em> & Learnings</h2>
+      </div>
+      <div style="flex:1;height:1px;background:var(--line);margin-top:24px;"></div>
+    </div>
+
+    <div data-reveal class="update-list" style="background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;">
+
+      <div style="padding:28px 32px;border-bottom:1px solid var(--line);">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;flex-wrap:wrap;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);">Mai 26</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--accent);border-radius:999px;">Voice Agent</span>
+        </div>
+        <div style="font-family:'Newsreader',Georgia,serif;font-size:22px;font-weight:400;color:var(--ink);margin-bottom:8px;line-height:1.2;">Prototype läuft — Slack statt Küchendisplay</div>
+        <p style="font-size:14px;line-height:1.6;color:var(--dim);margin:0;">
+          Der Voice Agent nimmt Bestellungen entgegen und gibt sie strukturiert an n8n weiter — von dort landen sie auf Slack. Nicht glamourös, aber es funktioniert. Nächster Schritt ist ein echter Restauranttest.
+        </p>
+      </div>
+
+      <div style="padding:28px 32px;border-bottom:1px solid var(--line);">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;flex-wrap:wrap;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);">Mai 26</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--accent);border-radius:999px;">Reflexion</span>
+        </div>
+        <div style="font-family:'Newsreader',Georgia,serif;font-size:22px;font-weight:400;color:var(--ink);margin-bottom:8px;line-height:1.2;">Grübeln hält mich vom Umsetzen ab</div>
+        <p style="font-size:14px;line-height:1.6;color:var(--dim);margin:0;">
+          In der Zeit, die ich mit Analysieren verbringe, hätte ich schon drei Dinge ausprobieren können. Das ist die ehrlichste Erkenntnis der letzten Wochen. Mehr machen, weniger nachdenken.
+        </p>
+      </div>
+
+      <div style="padding:28px 32px;">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;flex-wrap:wrap;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);">Apr 26</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--accent);border-radius:999px;">CodeCuisine</span>
+        </div>
+        <div style="font-family:'Newsreader',Georgia,serif;font-size:22px;font-weight:400;color:var(--ink);margin-bottom:8px;line-height:1.2;">Websites sind der Einstieg — nicht das Ziel</div>
+        <p style="font-size:14px;line-height:1.6;color:var(--dim);margin:0;">
+          CodeCuisine fängt mit Websites an, weil das der einfachste Türöffner ist. Aber das eigentliche Ziel ist digitale Lösungen zu bauen die wirklich in den Alltag kleiner Unternehmen passen. Der Voice Agent ist der erste Beweis dafür.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WAS KOMMT -->
+<section id="naechstes" style="padding:64px 0 88px;">
+  <div class="container">
+    <div style="display:flex;align-items:baseline;gap:20px;margin-bottom:32px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;padding-top:6px;min-width:60px;">§ 03</div>
+      <div style="flex:1;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;">Ehrlich gesagt</div>
+        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(32px,4.2vw,56px);font-weight:400;margin:0;letter-spacing:-0.02em;color:var(--ink);line-height:1.05;">Was als <em>nächstes</em> kommt</h2>
+      </div>
+      <div style="flex:1;height:1px;background:var(--line);margin-top:24px;"></div>
+    </div>
+
+    <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" class="status-grid">
+
+      <div style="padding:28px 32px;background:var(--paper);border:1px solid var(--line);border-radius:16px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">↳ Konkret</div>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;">
+          <li style="font-size:15px;color:var(--ink);line-height:1.5;padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--accent);">—</span>Voice Agent beim ersten Restaurant testen</li>
+          <li style="font-size:15px;color:var(--ink);line-height:1.5;padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--accent);">—</span>GZ-Antrag vorbereiten & einreichen</li>
+          <li style="font-size:15px;color:var(--ink);line-height:1.5;padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--accent);">—</span>CodeCuisine: 2 neue Kunden gewinnen</li>
+          <li style="font-size:15px;color:var(--ink);line-height:1.5;padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--accent);">—</span>Ab Juli Vollzeit selbständig</li>
+        </ul>
+      </div>
+
+      <div style="padding:28px 32px;background:var(--ink);color:var(--bg);border-radius:16px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:color-mix(in srgb,var(--bg) 50%,transparent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">↳ Offen</div>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;">
+          <li style="font-size:15px;color:color-mix(in srgb,var(--bg) 80%,transparent);line-height:1.5;padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--accent);">—</span>Angestellt oder selbständig?</li>
+          <li style="font-size:15px;color:color-mix(in srgb,var(--bg) 80%,transparent);line-height:1.5;padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--accent);">—</span>Wie schnell skaliert der Voice Agent?</li>
+          <li style="font-size:15px;color:color-mix(in srgb,var(--bg) 80%,transparent);line-height:1.5;padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--accent);">—</span>Pricing für CodeCuisine richtig setzen</li>
+          <li style="font-size:15px;color:color-mix(in srgb,var(--bg) 80%,transparent);line-height:1.5;padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--accent);">—</span>Mal sehen was sonst noch kommt</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div data-reveal style="margin-top:24px;padding:24px 32px;background:color-mix(in srgb,var(--accent) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--accent) 25%,var(--line));border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Du willst reden?</div>
+        <div style="font-size:17px;font-weight:500;color:var(--ink);">Über KI, Gründung oder Web — schreib mir einfach.</div>
+      </div>
+      <a href="Website.html#kontakt" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--accent);border-radius:999px;">
+        Schreib mir ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="padding:32px 0 48px;border-top:1px solid var(--line);">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);">© 2026 Tarik Tasci · Building in Public</div>
+    <a href="Website.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink);text-decoration:none;padding:6px 12px;border:1px solid var(--line);border-radius:999px;">← Zurück zur Website</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    document.getElementById('tt-progress').style.width = pct + '%';
+  }, { passive: true });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.setAttribute('data-revealed', 'true');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '-8% 0px -10% 0px', threshold: 0.05 });
+  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
