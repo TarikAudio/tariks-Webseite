@@ -13,7 +13,7 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ftp.tariktasci.de
+          server: 46.202.156.154
           username: u178379137.tariksgit
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /home/u178379137/domains/tariktasci.de/public_html/
