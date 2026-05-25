@@ -730,31 +730,7 @@ const Notizen = () => {
       title: 'Grübeln kostet mehr als Scheitern',
       blurb: 'Ich habe heute gemerkt, dass ich in der Zeit, die ich mit Nachdenken verbringe, schon drei Dinge hätte ausprobieren können.',
       tags: ['Mindset', 'Notiz', 'Freiburg'],
-    },
-    {
-      date: '28. Mär 26',
-      read: '4 Min',
-      kind: 'Werkstatt',
-      title: 'WordPress reicht — und zwar öfter, als man denkt',
-      blurb: 'Warum für 80% der KMU, mit denen ich bei CodeCuisine spreche, der klassische Stack völlig genug ist — und wo wir trotzdem weitergehen.',
-      tags: ['WordPress', 'KMU', 'Studio'],
-    },
-    {
-      date: '14. Mär 26',
-      read: '5 Min',
-      kind: 'Werdegang',
-      title: 'Was Hotelfach mit Gründungsberatung zu tun hat',
-      blurb: 'Empfangs\u00adschalter, Beschwerden, Sonderwünsche, Sprachen. Fast alles, was ich heute mit Teams übe, habe ich an einer Rezeption gelernt.',
-      tags: ['Soft Skills', 'Werdegang', 'Reflexion'],
-    },
-    {
-      date: '02. Feb 26',
-      read: '7 Min',
-      kind: 'Werkzeug',
-      title: 'n8n als kleines Studio-Brain',
-      blurb: 'Drei Workflows, die CodeCuisine seit ein paar Monaten unauffällig am Laufen halten — vom ersten Lead bis zur Rechnung.',
-      tags: ['n8n', 'Automation', 'Prozesse'],
-    },
+    },},
   ];
   const [featured, ...rest] = posts;
 
