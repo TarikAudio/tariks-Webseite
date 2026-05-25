@@ -296,7 +296,7 @@ const FeatureCard = ({ p, idx }) => {
         width: '100%',
       }}>
       {/* Typo header */}
-      <div style={{
+      <div className="tt-feature-card-header" style={{
         height: '220px',
         background: a.stroke,
         color: 'var(--bg)',
@@ -311,7 +311,7 @@ const FeatureCard = ({ p, idx }) => {
           backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0)',
           backgroundSize: '10px 10px',
         }}></div>
-        <div style={{
+        <div className="tt-feature-card-title" style={{
           fontFamily: '"Newsreader", Georgia, serif',
           fontStyle: 'italic',
           fontSize: '92px',
@@ -995,21 +995,6 @@ const Kontakt = () => {
                   {d.email}
                   <span style={{ fontFamily: '"JetBrains Mono", monospace' }}>↗</span>
                 </a>
-                <a href={`tel:${d.phone.replace(/\s/g, '')}`} style={{
-                  padding: '14px 22px',
-                  background: 'transparent',
-                  color: 'var(--bg)',
-                  borderRadius: '999px',
-                  textDecoration: 'none',
-                  fontSize: '15px',
-                  border: '1px solid color-mix(in srgb, var(--bg) 25%, transparent)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  letterSpacing: '-0.005em',
-                }}>
-                  {d.phone}
-                </a>
               </div>
             </div>
 
@@ -1022,7 +1007,7 @@ const Kontakt = () => {
               borderTop: '1px solid color-mix(in srgb, var(--bg) 18%, transparent)',
             }}>
               <div style={{ color: 'var(--bg)', marginBottom: '14px' }}>↘ Auch hier</div>
-              <div>LinkedIn — linkedin.com/in/tariktasci</div>
+              <a href="https://linkedin.com/in/tariktasci" target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}>LinkedIn — linkedin.com/in/tariktasci</a>
               <div>Adresse — {d.address}</div>
               <div>{d.location}</div>
               <div style={{ marginTop: '14px', color: 'color-mix(in srgb, var(--bg) 50%, transparent)' }}>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarik Tasci — Gründungsberatung · Webhandwerk · Workshops</title>
 
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
@@ -58,6 +59,7 @@
       font-family: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
       -webkit-font-smoothing: antialiased;
       transition: background 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
     }
 
     html { scroll-behavior: smooth; }
@@ -213,6 +215,11 @@
       .tt-container { padding: 0 20px !important; }
       .tt-hero-section { padding: 40px 20px 20px !important; }
       section:not(#top) { padding-top: 44px !important; padding-bottom: 16px !important; }
+      /* Hero pre: prevent overflow */
+      .tt-hero-section pre { font-size: 11px !important; overflow-x: hidden !important; white-space: pre !important; }
+      /* Featured cards: kompakterer Header auf Mobile */
+      .tt-feature-card-header { height: 140px !important; padding: 14px 18px !important; }
+      .tt-feature-card-title { font-size: 54px !important; }
       .tt-hero-grid {
         grid-template-columns: 1fr !important;
         gap: 24px !important;
