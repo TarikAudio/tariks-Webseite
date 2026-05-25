@@ -549,7 +549,7 @@ const Karriere = () => {
             { label: 'Studium', value: 'B.Sc. Medien & Informationswesen' },
             { label: 'Sprachen', value: 'DE · TR · EN' },
           ].map((s, i) => (
-            <div key={i} style={{
+            <div key={i} className="tt-stats-item" style={{
               flex: '1 1 200px',
               padding: '16px 24px',
               borderRight: i < 2 ? '1px solid var(--line)' : 'none',
@@ -814,7 +814,7 @@ const Notizen = () => {
             }}>Weiterlesen ↗</a>
           </div>
 
-          <div style={{
+          <div className="tt-notizen-dark-card" style={{
             aspectRatio: '4 / 3',
             background: 'var(--ink)',
             color: 'var(--bg)',

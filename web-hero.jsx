@@ -113,10 +113,28 @@ const NavBar = ({ activeSection, accent }) => {
           alignItems: 'center',
           gap: '8px',
           letterSpacing: '-0.005em',
+          whiteSpace: 'nowrap',
         }}>
           Schreib mir
           <span style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '12px' }}>↗</span>
         </a>
+      </div>
+
+      {/* Mobile scroll nav */}
+      <div className="tt-mobile-nav-row" style={{ display: 'none' }}>
+        {items.map(it => (
+          <a key={it.id} href={it.href || `#${it.id}`} style={{
+            fontFamily: '"JetBrains Mono", monospace',
+            fontSize: '12px',
+            color: 'var(--dim)',
+            textDecoration: 'none',
+            padding: '6px 14px',
+            borderRadius: '999px',
+            border: '1px solid var(--line)',
+            whiteSpace: 'nowrap',
+            background: 'var(--paper)',
+          }}>{it.label}</a>
+        ))}
       </div>
     </nav>
   );

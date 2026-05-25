@@ -247,12 +247,37 @@
       .tt-career-row > :nth-child(2) { grid-area: title; }
       .tt-career-row > :nth-child(3) { grid-area: place; text-align: left !important; opacity: 0.7; }
       .tt-career-row > :nth-child(4) { grid-area: plus; }
+
+      /* Mobile scroll nav */
+      .tt-mobile-nav-row {
+        display: flex !important;
+        overflow-x: auto;
+        gap: 6px;
+        padding: 10px 20px 12px;
+        border-top: 1px solid var(--line);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .tt-mobile-nav-row::-webkit-scrollbar { display: none; }
+
+      /* Stats bar: stack vertically, border bottom instead of right */
+      .tt-stats-item { border-right: none !important; border-bottom: 1px solid var(--line) !important; }
+      .tt-stats-item:last-child { border-bottom: none !important; }
+
+      /* Hide dark quote card in Notizen on mobile — saves space */
+      .tt-notizen-dark-card { display: none !important; }
+      .tt-notizen-featured { grid-template-columns: 1fr !important; }
+
+      /* Kontakt: stack */
+      .tt-contact-grid { grid-template-columns: 1fr !important; }
     }
 
     @media (max-width: 520px) {
       .tt-hero-title { letter-spacing: -0.04em !important; }
       .tt-kontakt-card { padding: 32px 20px !important; }
       section { padding-top: 48px !important; padding-bottom: 24px !important; }
+      /* Smaller card fonts on tiny screens */
+      .tt-card-role { font-size: 18px !important; }
     }
 
     /* selection color */
