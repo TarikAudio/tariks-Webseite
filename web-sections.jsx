@@ -1007,7 +1007,7 @@ const Kontakt = () => {
               borderTop: '1px solid color-mix(in srgb, var(--bg) 18%, transparent)',
             }}>
               <div style={{ color: 'var(--bg)', marginBottom: '14px' }}>↘ Auch hier</div>
-              <a href="https://linkedin.com/in/tariktasci" target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}>LinkedIn — linkedin.com/in/tariktasci</a>
+              <a href="https://www.linkedin.com/in/tarik-tasci-96a7a6275/" target="_blank" rel="noopener" style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}>LinkedIn — linkedin.com/in/tarik-tasci</a>
               <div>Adresse — {d.address}</div>
               <div>{d.location}</div>
               <div style={{ marginTop: '14px', color: 'color-mix(in srgb, var(--bg) 50%, transparent)' }}>
