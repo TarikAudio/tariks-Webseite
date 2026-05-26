@@ -11,17 +11,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: 46.202.156.154
-          username: u178379137.tariksgit
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
-            hostinger-upload/**
-            *.docx
-            .DS_Store
+        run: |
+          lftp -c "
+          set ftp:ssl-allow no;
+          set net:timeout 30;
+          open -u u178379137.tariksgit,${{ secrets.FTP_PASSWORD }} 46.202.156.154;
+          mirror -R --delete --verbose \
+            --exclude-glob .git \
+            --exclude-glob .github \
+            --exclude-glob hostinger-upload \
+            --exclude-glob '*.docx' \
+            --exclude-glob .DS_Store \
+            . /;
+          bye
+          "
