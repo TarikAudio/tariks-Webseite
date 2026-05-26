@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grübeln kostet mehr als Scheitern — Tarik Tasci</title>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ece8de;
+      --paper: #f5f1e7;
+      --ink: #1a1812;
+      --dim: #6b6256;
+      --line: rgba(26, 24, 18, 0.12);
+      --accent: #3a6b46;
+    }
+
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    html { scroll-behavior: smooth; }
+    ::selection { background: var(--accent); color: var(--bg); }
+    a { color: inherit; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--ink);
+    }
+    .nav-logo-box {
+      width: 30px; height: 30px;
+      background: var(--ink); color: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px; font-weight: 600; border-radius: 6px;
+    }
+    .nav-back {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px; color: var(--dim);
+      text-decoration: none; padding: 8px 14px;
+      border: 1px solid var(--line); border-radius: 999px;
+      transition: color .15s, border-color .15s;
+    }
+    .nav-back:hover { color: var(--ink); border-color: var(--ink); }
+
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 32px 96px;
+    }
+
+    .post-meta {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; color: var(--dim);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .post-meta-tag {
+      padding: 2px 8px;
+      background: var(--accent); color: var(--paper);
+      border-radius: 3px; font-size: 10px;
+    }
+
+    .post-title {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 400; line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin: 0 0 32px; color: var(--ink);
+    }
+
+    .post-lead {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: clamp(19px, 2vw, 24px);
+      line-height: 1.5; font-weight: 300; color: var(--dim);
+      margin: 0 0 48px; padding-bottom: 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .post-body { font-size: 17px; line-height: 1.75; color: var(--ink); }
+    .post-body p { margin: 0 0 24px; }
+    .post-body p:last-child { margin-bottom: 0; }
+
+    .post-body h2 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 400; font-style: italic;
+      letter-spacing: -0.015em;
+      margin: 48px 0 16px; color: var(--ink);
+    }
+
+    .post-body blockquote {
+      margin: 32px 0; padding: 20px 24px;
+      border-left: 3px solid var(--accent);
+      background: var(--paper); border-radius: 0 8px 8px 0;
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 20px; font-style: italic;
+      line-height: 1.45; color: var(--ink);
+    }
+
+    .post-body em { font-style: italic; }
+    .post-body strong { font-weight: 600; }
+
+    .post-footer {
+      margin-top: 64px; padding-top: 32px;
+      border-top: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .post-footer-author {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; color: var(--dim);
+    }
+    .post-footer-back {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px; color: var(--accent);
+      text-decoration: none; padding: 8px 14px;
+      border: 1px solid var(--accent); border-radius: 999px;
+    }
+
+    @media (max-width: 640px) {
+      .nav { padding: 12px 20px; }
+      .article-wrap { padding: 40px 20px 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-box">tt</div>
+      <span style="font-family:'Newsreader',Georgia,serif; font-size:17px; font-style:italic;">Tarik Tasci</span>
+    </a>
+    <a href="index.html#notizen" class="nav-back">← Notizen</a>
+  </nav>
+
+  <main class="article-wrap">
+
+    <div class="post-meta">
+      <span class="post-meta-tag">Reflexion</span>
+      <span>24. Mai 2026</span>
+      <span>·</span>
+      <span>3 Min Lesezeit</span>
+    </div>
+
+    <h1 class="post-title">Grübeln kostet mehr als Scheitern</h1>
+
+    <p class="post-lead">
+      Ich wollte eine persönliche Website haben. Seit Monaten. Aber irgendwie war der
+      Moment nie richtig. Zu beschäftigt. Zu unsicher was draufkommen soll. Zu viel
+      Angst, dass es nicht gut genug aussieht. Bis ich einfach angefangen habe.
+    </p>
+
+    <div class="post-body">
+
+      <p>
+        Ehrlich gesagt hatte ich keine klare Vorstellung davon, wie die Seite aussehen soll.
+        Ich wusste nur: ich brauche eine. Für Bewerbungen, für Sichtbarkeit, als Anlaufstelle
+        für Leute die mich googeln. Das war der Plan. Den Rest würde ich rausfinden.
+      </p>
+
+      <p>
+        Was dann passiert ist, war für mich so unerwartet wie das Ergebnis selbst:
+        Ich habe die Seite gemeinsam mit Claude gebaut — einem KI-Assistenten —
+        in einem einzigen langen, chaotischen, produktiven Gespräch.
+      </p>
+
+      <h2>Wie das abgelaufen ist</h2>
+
+      <p>
+        Kein Figma-Mockup vorher. Keine klare Sitemap. Ich habe beschrieben was ich will,
+        Claude hat gebaut, ich habe geschaut, korrigiert, wieder beschrieben.
+        Manchmal hat es auf Anhieb gepasst. Manchmal war die Seite komplett weiß,
+        weil irgendwo ein Syntaxfehler steckte. Manchmal hat der Deploy in den
+        falschen Ordner auf dem Server geschrieben — drei Stunden Fehlersuche
+        für eine falsche Pfadangabe.
+      </p>
+
+      <blockquote>
+        „Die Seite war nicht fertig. Sie ist es immer noch nicht. Aber sie existiert."
+      </blockquote>
+
+      <p>
+        Das ist der Unterschied zu dem, was ich vorher gemacht hatte: gar nichts.
+        Ich hatte Vorstellungen, Notizen, grobe Ideen — aber keine Seite.
+        Jetzt habe ich eine Seite mit Fehlern. Und das ist besser.
+      </p>
+
+      <h2>Was mich überrascht hat</h2>
+
+      <p>
+        Ich bin kein Entwickler. Ich kann kein React, kein Git, kein FTP-Setup aus dem Kopf.
+        Trotzdem habe ich am Ende des Tages eine Seite deployt, die automatisch auf Hostinger
+        landet sobald ich einen Commit pushe. Das hätte ich vor ein paar Wochen nicht
+        für möglich gehalten.
+      </p>
+
+      <p>
+        Nicht weil die Technologie so einfach ist. Sondern weil ich aufgehört habe
+        zu warten, bis ich alles verstehe. Ich habe angefangen, Fragen gestellt,
+        Fehler gemacht, nachgefragt, weitergmacht. Das war der eigentliche Durchbruch —
+        nicht das Endprodukt.
+      </p>
+
+      <h2>Was ich daraus mitnehme</h2>
+
+      <p>
+        Grübeln fühlt sich produktiv an. Es ist es selten. Die Zeit, die ich damit
+        verbracht habe, über Design-Entscheidungen nachzudenken, die ich eh nicht
+        alleine treffen konnte, hätte ich besser in einen ersten schlechten Prototypen
+        investiert.
+      </p>
+
+      <p>
+        Das gilt für die Website. Es gilt für den Voice Agent, den ich gerade für
+        Restaurants baue. Es gilt vermutlich für die meisten Dinge.
+        <em>Erst bauen, dann verstehen.</em> Nicht umgekehrt.
+      </p>
+
+      <p>
+        Die Seite, die du gerade liest, ist das Ergebnis davon.
+        Noch nicht perfekt — aber da.
+      </p>
+
+    </div>
+
+    <div class="post-footer">
+      <span class="post-footer-author">Tarik Tasci · Freiburg im Breisgau · Mai 2026</span>
+      <a href="index.html#notizen" class="post-footer-back">← Zurück zu den Notizen</a>
+    </div>
+
+  </main>
+
+</body>
+</html>

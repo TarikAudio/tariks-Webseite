@@ -777,7 +777,7 @@ const Notizen = () => {
             <div style={{ marginTop: '16px', display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
               {featured.tags.map(t => <span key={t} style={tagStyle}>{t}</span>)}
             </div>
-            <a href="#notizen" style={{
+            <a href="post-grubeln.html" style={{
               marginTop: '20px',
               display: 'inline-flex', alignItems: 'center', gap: '8px',
               fontFamily: '"JetBrains Mono", monospace',
