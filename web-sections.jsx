@@ -1014,8 +1014,10 @@ const Footer = () => (
         fontFamily: '"JetBrains Mono", monospace',
         fontSize: '11px',
         color: 'var(--dim)',
+        display: 'flex', gap: '16px',
       }}>
-        Set in Newsreader, Bricolage Grotesque &amp; JetBrains Mono
+        <a href="impressum.html" style={{ color: 'var(--dim)', textDecoration: 'none' }}>Impressum</a>
+        <a href="datenschutz.html" style={{ color: 'var(--dim)', textDecoration: 'none' }}>Datenschutz</a>
       </div>
       <a href="#top" style={{
         fontFamily: '"JetBrains Mono", monospace',
