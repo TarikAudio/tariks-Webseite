@@ -299,8 +299,8 @@ const HeroMono = () => {
           color: 'var(--ink)',
           maxWidth: '720px',
         }}>
-          Gründungsberater, Mitgründer & Medien&shy;macher. Workshops, Web,
-          Geschäftsmodelle — aus Freiburg.
+          Gründer & Berater. KI, Voice Agents, Selbständigkeit — ich bau gerade
+          was auf und nehme dich mit. Aus Freiburg.
         </p>
       </div>
     </section>

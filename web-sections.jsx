@@ -950,8 +950,8 @@ const Kontakt = () => {
                 maxWidth: '520px',
                 textWrap: 'pretty',
               }}>
-                Workshop-Idee, Web-Projekt für dein KMU, oder einfach mal Kaffee in Freiburg — schreib mir
-                eine Mail oder ruf an. Ich melde mich meist innerhalb von 24 Stunden.
+                Ob Austausch zu KI, Voice Agents oder Unternehmertum, eine mögliche Zusammenarbeit
+                oder eine passende berufliche Gelegenheit — schreib mir einfach.
               </p>
 
               <div style={{ marginTop: '32px', display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
