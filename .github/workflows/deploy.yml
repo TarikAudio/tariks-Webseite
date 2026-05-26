@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: 46.202.156.154
           username: u178379137.tariksgit
