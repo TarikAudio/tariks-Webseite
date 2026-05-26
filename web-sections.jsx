@@ -730,7 +730,7 @@ const Notizen = () => {
       title: 'Grübeln kostet mehr als Scheitern',
       blurb: 'Ich habe heute gemerkt, dass ich in der Zeit, die ich mit Nachdenken verbringe, schon drei Dinge hätte ausprobieren können.',
       tags: ['Mindset', 'Notiz', 'Freiburg'],
-    },},
+    },
   ];
   const [featured, ...rest] = posts;
 
