@@ -112,7 +112,7 @@ const Jetzt = () => {
               CodeCuisine — Webhandwerk für KMU
             </div>
             <p style={{ margin: 0, fontSize: '14.5px', lineHeight: 1.55, color: 'color-mix(in srgb, var(--bg) 75%, transparent)', textWrap: 'pretty' }}>
-              Mit Louis baue ich gerade CodeCuisine auf — eine Web-Agentur für kleine Unternehmen. Wir fangen mit Websites an. Wo es hingeht, werden wir sehen.
+              Mit Louis entwickle ich aktuell CodeCuisine, eine Web-Agentur für kleine Unternehmen. Unser Fokus: moderne Websites, klare Prozesse und digitale Lösungen, die nicht nur gut aussehen, sondern Ergebnisse liefern.
             </p>
             <div style={{ marginTop: '16px', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
               {['WordPress', 'Wireframing', 'Kundenakquise', 'Prozessdesign'].map(s => (

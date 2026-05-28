@@ -299,8 +299,8 @@ const HeroMono = () => {
           color: 'var(--ink)',
           maxWidth: '720px',
         }}>
-          Gründer & Berater. KI, Voice Agents, Selbständigkeit — ich bau gerade
-          was auf und nehme dich mit. Aus Freiburg.
+          Gründer aus Freiburg. Meine Reise in die Selbständigkeit: KI, Voice Agents
+          und Automation. Ich nehme dich mit.
         </p>
       </div>
     </section>
