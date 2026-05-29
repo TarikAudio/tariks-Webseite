@@ -203,7 +203,7 @@ const Arbeit = () => {
         'Voice Agent mit ElevenLabs entwickelt',
         'n8n-Orchestrierung aufgebaut',
         'Prototype läuft intern — Output via Slack, bald Küchendisplay',
-        'Louis Heffner baut die Webapp drumherum',
+        'Tarik Tasci baut die Webapp drumherum',
       ],
       outcome: 'Prototype läuft. Erster Restauranttest in Kürze.',
       tags: ['KI', 'ElevenLabs', 'n8n', 'Gastronomie', 'Automation'],
@@ -1008,7 +1008,7 @@ const Footer = () => (
         fontSize: '11px',
         color: 'var(--dim)',
       }}>
-        © 2026 Louis Heffner · Freiburg im Breisgau · v26.05
+        © 2026 Tarik Tasci · Freiburg im Breisgau · v26.05
       </div>
       <div style={{
         fontFamily: '"JetBrains Mono", monospace',

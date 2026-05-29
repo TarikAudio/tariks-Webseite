@@ -81,9 +81,9 @@ const NavBar = ({ activeSection, accent }) => {
             fontFamily: '"JetBrains Mono", ui-monospace, monospace',
             fontSize: '12px', fontWeight: 600, letterSpacing: '-0.02em',
             borderRadius: '6px',
-          }}>lh</div>
+          }}>tt</div>
           <div style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: '17px', fontStyle: 'italic' }}>
-            Louis Heffner
+            Tarik Tasci
           </div>
         </a>
 
@@ -174,8 +174,8 @@ const HeroEditorial = () => {
           margin: 0,
           color: 'var(--ink)',
         }}>
-          <span className="tt-mask"><span className="tt-rise" style={{ fontStyle: 'italic', animationDelay: '0ms' }}>Louis</span></span><br />
-          <span className="tt-mask"><span className="tt-rise" style={{ animationDelay: '120ms' }}>Heffner<span style={{ color: 'var(--accent)' }}>.</span></span></span>
+          <span className="tt-mask"><span className="tt-rise" style={{ fontStyle: 'italic', animationDelay: '0ms' }}>Tarik</span></span><br />
+          <span className="tt-mask"><span className="tt-rise" style={{ animationDelay: '120ms' }}>Tasci<span style={{ color: 'var(--accent)' }}>.</span></span></span>
         </h1>
 
         <div className="tt-hero-grid" style={{
@@ -244,7 +244,7 @@ const HeroGrotesk = () => {
           margin: 0,
           color: 'var(--ink)',
         }}>
-          <span className="tt-mask"><span className="tt-rise">Louis Heffner<span style={{ color: 'var(--accent)' }}>.</span></span></span>
+          <span className="tt-mask"><span className="tt-rise">Tarik Tasci<span style={{ color: 'var(--accent)' }}>.</span></span></span>
         </h1>
         <p style={{
           marginTop: '32px',
