@@ -1008,7 +1008,7 @@ const Footer = () => (
         fontSize: '11px',
         color: 'var(--dim)',
       }}>
-        © 2026 Tarik Tasci · Freiburg im Breisgau · v26.05
+        © 2026 Louis Heffner · Freiburg im Breisgau · v26.05
       </div>
       <div style={{
         fontFamily: '"JetBrains Mono", monospace',

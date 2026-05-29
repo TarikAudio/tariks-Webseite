@@ -1,8 +1,8 @@
 // Shared CV data (mounted to window)
 window.CV_DATA = {
-  name: "Tarik Tasci",
-  firstName: "Tarik",
-  lastName: "Tasci",
+  name: "Louis Heffner",
+  firstName: "Louis",
+  lastName: "Heffner",
   tagline: "Gründungsberater · Designer · Medien & Informationswesen",
   location: "Freiburg, Germany",
   address: "Roseggerstraße 9",
